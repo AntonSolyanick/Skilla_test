@@ -26,3 +26,17 @@
 .plusSign * {
   fill: #005ff8;
 }
+
+.container:hover * {
+  fill: #0024cb;
+
+  cursor: pointer;
+}
+
+.container:hover {
+  cursor: pointer;
+}
+
+.container:hover span {
+  color: #0024cb;
+}

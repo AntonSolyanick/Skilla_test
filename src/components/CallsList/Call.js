@@ -56,7 +56,7 @@ const Call = (props) => {
       </Button>
       <p>{props.source}</p>
       <CallRecognize />
-      <audio controls>Audio</audio>
+      <p>{props.call.date_notime} </p>
     </li>
   );
 };

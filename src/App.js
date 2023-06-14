@@ -4,37 +4,43 @@ import SideBar from "./components/sidebar/Sidebar";
 import MainContent from "./components/MainContent";
 import "./App.css";
 
-// .toISOString().split("T")[0]
-
-const currentDate = new Date();
 const dateEnd = new Date();
-const dateStart = new Date(currentDate.setDate(currentDate.getDate() - 3));
-
-console.log(dateEnd, dateStart);
 
 function App() {
   const [dateInterval, setDateInterval] = useState({
-    dateStart: dateStart.toISOString().split("T")[0],
-    dateEnd: dateEnd.toISOString().split("T")[0],
+    dateStart: new Date(new Date().setDate(dateEnd.getDate() - 2))
+      .toISOString()
+      .split("T")[0],
+    dateEnd: new Date().toISOString().split("T")[0],
     dateView: "3 дня",
   });
-
+  const [currentFilterValue, setCurrentFilterValue] = useState("");
+  const [isDatePickerVisible, setIsDatePickerVisible] = useState(false);
   const [callsData, setCallsData] = useState([]);
 
+  const searchQuery = currentFilterValue ? `&in_out=${currentFilterValue}` : "";
+
+  const url = `https://api.skilla.ru/mango/getList?date_start=${dateInterval.dateStart}&date_end=${dateInterval.dateEnd}${searchQuery}&limit=700`;
+
   useEffect(() => {
-    fetch(
-      `https://api.skilla.ru/mango/getList?date_start=${dateInterval.dateStart}&date_end=${dateInterval.dateEnd}&limit=500`,
-      {
-        method: "POST",
-        headers: { Authorization: "Bearer testtoken" },
-      }
-    )
+    fetch(url, {
+      method: "POST",
+      headers: { Authorization: "Bearer testtoken" },
+    })
       .then((response) => response.json())
       .then((data) => {
         setCallsData(data.results);
       })
-      .catch((error) => console.log(error.message));
-  }, [dateInterval]);
+      .catch((error) => console.log("error.message"));
+  }, [dateInterval, url]);
+
+  const datePickerVisibleHandler = () => {
+    setIsDatePickerVisible((prevState) => !prevState);
+  };
+
+  const setCurrentFilterValueHandler = (filterValue) => {
+    setCurrentFilterValue(filterValue);
+  };
 
   const changeDateIntervalHandler = (intervalInfo) => {
     setDateInterval({
@@ -42,13 +48,16 @@ function App() {
       dateEnd: intervalInfo.dateEnd,
       dateView: intervalInfo.dateView,
     });
-    console.log(dateInterval);
   };
 
   return (
     <div className="App">
       <SideBar />
       <MainContent
+        currentFilterValue={currentFilterValue}
+        setCurrentFilterValueHandler={setCurrentFilterValueHandler}
+        isDatePickerVisible={isDatePickerVisible}
+        datePickerVisibleHandler={datePickerVisibleHandler}
         dateInterval={dateInterval}
         onChangeDateInterval={changeDateIntervalHandler}
         callsData={callsData}

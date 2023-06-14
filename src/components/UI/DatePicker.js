@@ -1,125 +1,153 @@
+import { useRef } from "react";
 import { ReactComponent as IconArrowLeft } from "../../icons/iconsUI/arrowLeft.svg";
 import { ReactComponent as IconArrowRight } from "../../icons/iconsUI/arrowRight.svg";
 import { ReactComponent as IconCalendar } from "../../icons/iconsUI/calendar.svg";
 import classes from "./DatePicker.module.css";
 import Button from "./Button";
-import { useRef, useState } from "react";
+import Modal from "./Modal";
 
-const todayDate = new Date();
-let daysCount = 3;
+let daysCount = 2;
 
-const DatePicker = ({ dateInterval, onChangeDateInterval }) => {
-  const [isVisible, setIsVisible] = useState(false);
+const DatePicker = ({
+  isDatePickerVisible,
+  datePickerVisibleHandler,
+  dateInterval,
+  onChangeDateInterval,
+}) => {
   const enteredDateEnd = useRef();
   const enteredDateStart = useRef();
 
   const onChangeDaysCount = (term) => {
-    if (daysCount + term > 0 && daysCount + term < 7) {
+    let daysString = "дня";
+    if (daysCount + term >= 0 && daysCount + term < 6) {
       daysCount += term;
-      onChangeDateInterval({ ...dateInterval });
+      daysCount + 1 < 2 && (daysString = "день");
+      daysCount + 1 > 4 && (daysString = "дней");
+      onChangeDateInterval({
+        dateEnd: new Date().toISOString().split("T")[0],
+        dateStart: new Date(
+          new Date().setDate(new Date().getDate() - daysCount)
+        )
+          .toISOString()
+          .split("T")[0],
+        dateView: `${daysCount + 1} ${daysString}`,
+      });
     }
   };
 
-  // `${enteredDateEnd.current.value}-${enteredDateStart.current.value}`
-
   const onFormSubmitHandler = (e) => {
     e.preventDefault();
-    console.log(enteredDateEnd, enteredDateStart);
     onChangeDateInterval({
       dateEnd: enteredDateEnd.current.value,
       dateStart: enteredDateStart.current.value,
-      dateView: "За период",
+      dateView: "период",
     });
+    datePickerVisibleHandler();
+    daysCount = 2;
   };
 
   const dateIntervalOptions = [
     {
       dateEnd: new Date().toISOString().split("T")[0],
-      dateStart: new Date(todayDate.setDate(todayDate.getDate() - 3))
+      dateStart: new Date(new Date().setDate(new Date().getDate() - 2))
         .toISOString()
         .split("T")[0],
       dateView: "3 дня",
     },
     {
       dateEnd: new Date().toISOString().split("T")[0],
-      dateStart: new Date(todayDate.setDate(todayDate.getDate() - 7))
+      dateStart: new Date(new Date().setDate(new Date().getDate() - 6))
         .toISOString()
         .split("T")[0],
       dateView: "неделя",
     },
     {
       dateEnd: new Date().toISOString().split("T")[0],
-      dateStart: new Date(todayDate.setDate(todayDate.getDate() - 31))
+      dateStart: new Date(new Date().setDate(new Date().getDate() - 30))
         .toISOString()
         .split("T")[0],
       dateView: "месяц",
     },
     {
       dateEnd: new Date().toISOString().split("T")[0],
-      dateStart: new Date(todayDate.setDate(todayDate.getDate() - 365))
+      dateStart: new Date(new Date().setDate(new Date().getDate() - 364))
         .toISOString()
         .split("T")[0],
       dateView: "год",
     },
   ];
 
-  const isVisibleHandler = () => {
-    setIsVisible((prevState) => !prevState);
-  };
-
   return (
-    <div className={classes.wrapper}>
-      <div className={classes.container}>
-        <Button>
-          <IconArrowLeft />
-        </Button>
-        <Button onClick={isVisibleHandler}>
-          <IconCalendar className={classes.calendarButton} />
-          <p className={classes.calendarText}> {dateInterval.dateView} </p>
-        </Button>
-        <Button>
-          <IconArrowRight className={classes.arrowRight} />
-        </Button>
-      </div>
+    <>
+      {isDatePickerVisible && <Modal onClick={datePickerVisibleHandler} />}
+      <div className={classes.wrapper}>
+        <div className={classes.container}>
+          <Button onClick={() => onChangeDaysCount(-1)}>
+            <IconArrowLeft className={classes.arrow} />
+          </Button>
+          <Button onClick={datePickerVisibleHandler}>
+            <div className={classes.calendarContainer}>
+              <IconCalendar className={classes.calendarButton} />
+              <p className={classes.calendarText}> {dateInterval.dateView} </p>
+            </div>
+          </Button>
+          <Button onClick={() => onChangeDaysCount(+1)}>
+            <IconArrowRight className={classes.arrow} />
+          </Button>
+        </div>
 
-      <ul
-        className={`${classes.dateOptions} ${
-          isVisible && classes.showDateOption
-        }`}
-      >
-        {dateIntervalOptions.map((intervalOption) => (
-          <li
-            className={classes.dateOptionValue}
-            key={intervalOption.dateView}
-            onClick={() => {
-              onChangeDateInterval({
-                dateStart: intervalOption.dateStart,
-                dateEnd: intervalOption.dateEnd,
-                dateView: intervalOption.dateView,
-              });
-              isVisibleHandler();
-            }}
-          >
-            {intervalOption.dateView}
+        <ul
+          className={`${classes.dateOptions} ${
+            isDatePickerVisible && classes.showDateOption
+          }`}
+        >
+          {dateIntervalOptions.map((intervalOption) => (
+            <li
+              className={classes.dateOptionValue}
+              key={intervalOption.dateView}
+              onClick={() => {
+                onChangeDateInterval({
+                  dateStart: intervalOption.dateStart,
+                  dateEnd: intervalOption.dateEnd,
+                  dateView: intervalOption.dateView,
+                });
+                daysCount = 2;
+                datePickerVisibleHandler();
+              }}
+            >
+              {intervalOption.dateView}
+            </li>
+          ))}
+
+          <li className={classes.liFormContainer}>
+            <p className={classes.formText}>Указать даты</p>
+            <form
+              className={classes.formContainer}
+              onSubmit={onFormSubmitHandler}
+            >
+              <input
+                className={classes.dateInput}
+                type="text"
+                placeholder="__.__.__"
+                ref={enteredDateStart}
+              ></input>
+              <span>-</span>
+              <input
+                className={classes.dateInput}
+                type="text"
+                placeholder="__.__.__"
+                ref={enteredDateEnd}
+              ></input>
+              <Button>
+                <IconCalendar
+                  className={classes.calendarIconSubmitt}
+                ></IconCalendar>
+              </Button>
+            </form>
           </li>
-        ))}
-        <li className={classes.dateOptionValue}>
-          <form onSubmit={onFormSubmitHandler}>
-            <input
-              className={classes.dateInput}
-              type="text"
-              ref={enteredDateStart}
-            ></input>
-            <input
-              className={classes.dateInput}
-              type="text"
-              ref={enteredDateEnd}
-            ></input>
-            <button></button>
-          </form>
-        </li>
-      </ul>
-    </div>
+        </ul>
+      </div>
+    </>
   );
 };
 

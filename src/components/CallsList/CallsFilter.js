@@ -3,10 +3,11 @@ import { useState } from "react";
 import classes from "./CallsFilter.module.css";
 import { ReactComponent as IconArrowDropDown } from "../../icons/iconsUI/arrowDropdown.svg";
 import Button from "../UI/Button";
+import Modal from "../UI/Modal";
 
 const CallsFilter = (props) => {
+  const [isVisibleOption, setIsVisibleOption] = useState(false);
   const [currentValue, setCurrentValue] = useState(props.currentValue);
-  const [isVisibleOption, setIsVisibleOption] = useState("false");
 
   const onChangeFilterhandler = (value) => {
     setCurrentValue(value);
@@ -14,35 +15,46 @@ const CallsFilter = (props) => {
   };
 
   return (
-    <div className={classes.select}>
-      <div className={classes.currentValue}>
-        {currentValue}
-        <Button>
-          <IconArrowDropDown
-            className={classes.dropdownButton}
-            onClick={() => setIsVisibleOption((prevState) => !prevState)}
-          />
-        </Button>
+    <>
+      {isVisibleOption && <Modal onClick={() => setIsVisibleOption(false)} />}
+      <div className={classes.select}>
+        <div className={classes.currentValue}>
+          {currentValue}
+          <Button>
+            <IconArrowDropDown
+              className={classes.dropdownButton}
+              onClick={() => setIsVisibleOption((prevState) => !prevState)}
+            />
+          </Button>
+        </div>
+        <ul
+          className={`${classes.filterOtions} ${
+            isVisibleOption && classes.showFilterOption
+          }`}
+        >
+          {props.values.map((value) => (
+            <li
+              key={value}
+              className={classes.filterValue}
+              onClick={() => {
+                onChangeFilterhandler(value);
+                if (value === "Входящие")
+                  props.setCurrentFilterValueHandler("1");
+                if (value === "Исходящие")
+                  props.setCurrentFilterValueHandler("0");
+                if (value === "Все типы")
+                  props.setCurrentFilterValueHandler("");
+              }}
+            >
+              <Button>{value}</Button>
+              {currentValue === value && (
+                <div className={`${classes.circle} `}></div>
+              )}
+            </li>
+          ))}
+        </ul>
       </div>
-      <ul
-        className={`${classes.filterOtions} ${
-          !isVisibleOption && classes.showFilterOption
-        }`}
-      >
-        {props.values.map((value) => (
-          <li
-            key={value}
-            className={classes.filterValue}
-            onClick={() => onChangeFilterhandler(value)}
-          >
-            <Button>{value}</Button>
-            {currentValue === value && (
-              <div className={`${classes.circle} `}></div>
-            )}
-          </li>
-        ))}
-      </ul>
-    </div>
+    </>
   );
 };
 

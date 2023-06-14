@@ -17,7 +17,17 @@
   top: 12px;
 }
 
+.calendarContainer:hover * {
+  fill: #002cfb;
+  color: #002cfb;
+}
+
+.calendarContainer {
+  display: flex;
+}
+
 .calendarText {
+  width: 42px;
   margin-left: 8px;
   font-size: 14px;
   font-weight: 400;
@@ -53,11 +63,61 @@
   cursor: pointer;
 }
 
+.dateOptionValue:hover * {
+  background-color: #e5e5e5;
+}
+
 .showDateOption {
   z-index: 10;
 }
 
+.arrow:hover * {
+  fill: #002cfb;
+}
+
 .dateInput {
+  width: 53px;
+  font-weight: 400;
+  outline: none;
+  padding-bottom: 10px;
+  font-size: 14px;
+  letter-spacing: 0.12em;
   border: none;
-  border-bottom: dashed;
+}
+
+.formContainer {
+  display: flex;
+  position: relative;
+  top: -5px;
+}
+
+.calendarIconSubmitt {
+  margin-left: 15px;
+}
+
+.formText {
+  color: #122945;
+  font-size: 14px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  height: 40px;
+}
+
+.liFormContainer {
+  padding-left: 20px;
+}
+
+.liFormContainer:hover {
+  color: #122945;
+  background-color: #e5e5e5;
+  cursor: pointer;
+}
+
+.liFormContainer:hover * {
+  background-color: #e5e5e5;
+}
+
+span {
+  color: #899cb1;
 }

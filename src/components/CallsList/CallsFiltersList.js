@@ -4,7 +4,7 @@ import CallsFilter from "./CallsFilter";
 import { ReactComponent as IconSearch } from "../../icons/iconsUI/search.svg";
 
 const filters = [
-  { currentValue: "Все типы", values: [] },
+  { currentValue: "Все типы", values: ["Все типы", "Входящие", "Исходящие"] },
   {
     currentValue: "Все сотрудники",
     values: [],
@@ -34,7 +34,10 @@ const filters = [
   },
 ];
 
-const CallsFiltersList = () => {
+const CallsFiltersList = ({
+  currentFilterValue,
+  setCurrentFilterValueHandler,
+}) => {
   return (
     <div className={classes.container}>
       <div className={classes.search}>
@@ -51,6 +54,8 @@ const CallsFiltersList = () => {
         {filters.map((filter) => (
           <CallsFilter
             key={filter.currentValue}
+            currentFilterValue={currentFilterValue}
+            setCurrentFilterValueHandler={setCurrentFilterValueHandler}
             values={filter.values}
             currentValue={filter.currentValue}
           />
