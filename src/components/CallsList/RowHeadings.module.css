@@ -1,0 +1,31 @@
+.container {
+  height: 61px;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 34px 35px 100px 95px 28px 28px 332px 214px 198px 1fr;
+  align-items: center;
+}
+
+.container * {
+  font-weight: 400;
+  font-size: 14px;
+  color: #899cb1;
+}
+
+.checkbox {
+  width: 16px;
+  height: 16px;
+  margin-left: 12px;
+}
+
+.callTypeIcon {
+  text-align: center;
+}
+
+.callTime {
+  margin-left: 25px;
+}
+
+.callPhoto {
+  border-radius: 50%;
+}

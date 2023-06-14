@@ -1,0 +1,23 @@
+.selectorCompany {
+  margin-left: 64px;
+  margin-top: 21px;
+  width: 282px;
+  font-weight: 400;
+  font-size: 15px;
+  color: #899cb1;
+}
+
+.selectorCompany * {
+  margin: 0;
+  padding: 0;
+}
+
+.selectorCompanyHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dropDownButton {
+  border: none;
+  background-color: white;
+}

@@ -1,0 +1,14 @@
+.recognizeButton {
+  width: 122px;
+  height: 40px;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #002cfb;
+  border-radius: 4px;
+  color: #002cfb;
+  font-weight: 500;
+  font-size: 14px;
+  background-color: #ffffff;
+}

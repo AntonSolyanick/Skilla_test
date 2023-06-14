@@ -1,0 +1,78 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  width: 594px;
+  height: 34px;
+  vertical-align: middle;
+
+  margin-left: 86px;
+  margin-top: 14px;
+  margin-bottom: 0px;
+  padding: 0;
+}
+
+.callAnalyticsText {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  color: #122945;
+  margin: 0;
+}
+
+.callsQuantity {
+  font-weight: 400;
+  font-size: 14px;
+  color: #00a775;
+}
+
+div .analytProgressBar {
+  width: 156px;
+  height: 6px;
+  margin-top: 7px;
+  background-color: #dee6f5;
+  border-radius: 12px;
+}
+
+.newCallsBar {
+  width: 68px;
+  height: 6px;
+  display: flex;
+  background-color: #28a879;
+  border-radius: 12px 0px 0px 12px;
+}
+
+.callsQualityBar {
+  height: 6px;
+  display: flex;
+  width: 67px;
+  background-color: #ffd500;
+  border-radius: 12px 0px 0px 12px;
+}
+
+.calls {
+  min-width: 168px;
+}
+
+.quality {
+  width: 164px;
+}
+
+.conversion {
+  width: 156px;
+}
+
+.callsConvertionBar {
+  width: 78px;
+  height: 6px;
+  display: flex;
+  background-color: #ea1a4f;
+  border-radius: 12px 0px 0px 12px;
+}
+
+.percentsQualityCalls {
+  color: #ffb800;
+}
+
+.percentsConversion {
+  color: #ea1a4f;
+}

@@ -1,0 +1,28 @@
+.headerContainer {
+  display: inline-flex;
+  align-items: flex-start;
+  min-width: 1680px;
+  height: 64px;
+  background-color: #ffffff;
+}
+
+.headerDate {
+  padding: 0px;
+  margin-left: 120px;
+  margin-top: 21px;
+  font-size: 15px;
+  font-weight: 400;
+  color: #899cb1;
+}
+
+.headerSearchButton {
+  margin-left: 197px;
+  margin-top: 24px;
+  border: none;
+  background-color: #ffffff;
+}
+
+.headerSelector {
+  margin-left: 64px;
+  margin-top: 21px;
+}

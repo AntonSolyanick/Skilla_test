@@ -1,0 +1,21 @@
+.selectorUser {
+  width: 62px;
+  height: 40px;
+  margin-top: 12px;
+  margin-left: 47px;
+  padding: 0px;
+}
+
+.selectorUser * {
+  margin: 0;
+  padding: 0;
+}
+.selectorUserHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dropDownButton {
+  border: none;
+  background-color: white;
+}

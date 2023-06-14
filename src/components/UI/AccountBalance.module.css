@@ -1,0 +1,28 @@
+.container {
+  width: 145px;
+  height: 40px;
+  margin-left: 1252px;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 48px;
+}
+
+.balanceText {
+  margin-left: 12px;
+  color: #899cb1;
+  font-size: 14px;
+}
+
+.balanceText span {
+  color: #122945;
+}
+
+.plusSign {
+  margin-left: 10px;
+}
+
+.plusSign * {
+  fill: #005ff8;
+}

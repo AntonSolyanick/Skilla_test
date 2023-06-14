@@ -1,0 +1,49 @@
+.container {
+  box-sizing: border-box;
+  height: 65px;
+  display: grid;
+  grid-template-columns: 34px 35px 100px 95px 28px 28px 332px 214px 198px 1fr;
+  align-items: center;
+  border-bottom: 1px solid #eaf0fa;
+}
+
+.checkbox {
+  width: 16px;
+  height: 16px;
+  margin-left: 12px;
+}
+
+.callTypeIcon {
+  margin-left: 12px;
+}
+
+.callTime {
+  margin-left: 27px;
+  font-weight: 400;
+  font-size: 15px;
+  color: #122945;
+}
+
+.callPhoto {
+  border-radius: 50%;
+}
+
+.iconPhone {
+  position: relative;
+  z-index: -5;
+}
+
+.container:hover * {
+  z-index: 5;
+}
+
+.container:hover {
+  cursor: pointer;
+  background-color: rgba(212, 223, 243, 0.17);
+}
+
+.phoneNumber {
+  font-weight: 400;
+  font-size: 15px;
+  color: #122945;
+}

@@ -1,0 +1,39 @@
+.container {
+  min-height: 68px;
+  width: 1440px;
+  margin-top: 20px;
+  margin-left: 120px;
+  display: flex;
+
+  font-size: 14px;
+  font-weight: 400;
+  color: #5e7793;
+}
+
+.filtersContainer {
+  width: 753px;
+  margin-left: auto;
+  margin-right: 15px;
+  padding: 0;
+  display: grid;
+  gap: 36px;
+  grid-template-columns: 79px 121px 91px 113px 93px 96px;
+}
+
+.inputCallsSearch {
+  border: none;
+  margin-left: 12px;
+  background-color: transparent;
+}
+
+.search {
+  width: 140px;
+  height: 20px;
+  margin-top: 12px;
+  padding: 0;
+  display: flex;
+}
+
+.inputCallsSearch:focus {
+  border: none;
+}
