@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import classes from "./CallsFilter.module.css";
 import { ReactComponent as IconArrowDropDown } from "../../icons/iconsUI/arrowDropdown.svg";
+import { ReactComponent as IconArrowUp } from "../../icons/iconsUI/closeDropdown.svg";
 import Button from "../UI/Button";
 import Modal from "../UI/Modal";
 
@@ -18,13 +19,20 @@ const CallsFilter = (props) => {
     <>
       {isVisibleOption && <Modal onClick={() => setIsVisibleOption(false)} />}
       <div className={classes.select}>
-        <div className={classes.currentValue}>
+        <div
+          className={`${classes.currentValue} ${
+            isVisibleOption && classes.currentValueFocus
+          }`}
+          onClick={() => setIsVisibleOption((prevState) => !prevState)}
+        >
           {currentValue}
           <Button>
-            <IconArrowDropDown
-              className={classes.dropdownButton}
-              onClick={() => setIsVisibleOption((prevState) => !prevState)}
-            />
+            {!isVisibleOption && (
+              <IconArrowDropDown className={classes.dropdownButton} />
+            )}
+            {isVisibleOption && (
+              <IconArrowUp className={classes.dropdownButton} />
+            )}
           </Button>
         </div>
         <ul
@@ -38,6 +46,7 @@ const CallsFilter = (props) => {
               className={classes.filterValue}
               onClick={() => {
                 onChangeFilterhandler(value);
+                props.setCallsDataHandler([]);
                 if (value === "Входящие")
                   props.setCurrentFilterValueHandler("1");
                 if (value === "Исходящие")

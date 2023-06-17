@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-
 import classes from "./CallsList.module.css";
 import Call from "./Call";
 import CallsFiltersList from "./CallsFiltersList";
@@ -10,6 +8,7 @@ const CallsList = (props) => {
     <>
       <CallsFiltersList
         setCurrentFilterValueHandler={props.setCurrentFilterValueHandler}
+        setCallsDataHandler={props.setCallsDataHandler}
       ></CallsFiltersList>
 
       <ul className={classes.callsList}>
@@ -18,7 +17,6 @@ const CallsList = (props) => {
         {props.callsData &&
           props.callsData.map((call) => (
             <Call
-              call={call}
               key={call.id}
               isIncoming={call.in_out}
               time={call.date.slice(10, 16)}
@@ -26,6 +24,8 @@ const CallsList = (props) => {
               isFromSite={call.from_site}
               number={call.partner_data.phone}
               source={call.source}
+              record={call.record}
+              duration={call.time}
             ></Call>
           ))}
       </ul>

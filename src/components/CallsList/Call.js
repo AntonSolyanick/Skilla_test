@@ -1,27 +1,23 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ReactComponent as IconIncomingCall } from "../../icons/iconsUI/incomingCall.svg";
 import { ReactComponent as IconOutcomingCall } from "../../icons/iconsUI/outcomingCall.svg";
 import { ReactComponent as IconWeb } from "../../icons/iconsUI/web.svg";
 import { ReactComponent as IconPhone } from "../../icons/iconsUI/phone.svg";
 
-import CallRecognize from "./CallRecognize";
+import AudioPlayer from "../UI/AudioPlayer";
 import Button from "../UI/Button";
 import classes from "./Call.module.css";
 
 const Call = (props) => {
-  // useEffect(() => {
-  //   fetch(
-  //     `https://api.skilla.ru/mango/getRecord?record=MToxMDA2NzYxNToxNDMwMDM3NzExNzow`,
-  //     {
-  //       method: "POST",
-  //       headers: {
-  //         Authorization: "Bearer testtoken",
-  //       },
-  //     }
-  //   )
-  //     .then((response) => console.log(response))
-  //     .catch((error) => console.log(error.message));
-  // }, []);
+  const [recordId, setrecordId] = useState(props.record);
+
+  const durationHours = Math.floor(props.duration / 60 / 60);
+  const durationMinutes = Math.floor(props.duration / 60) - durationHours * 60;
+  const duraionSeconds = props.duration % 60;
+  const formatedDuration = [
+    durationMinutes.toString().padStart(2, "0"),
+    duraionSeconds.toString().padStart(2, "0"),
+  ].join(":");
 
   const formatedPhoneNumber = `+${props.number[0]} (${props.number.slice(
     1,
@@ -33,8 +29,7 @@ const Call = (props) => {
 
   return (
     <li className={classes.container}>
-      {/* {console.log(props.call)} */}
-      <input className={classes.checkbox} type="checkbox"></input>
+      <p></p>
       {!!props.isIncoming && (
         <IconIncomingCall className={classes.callTypeIcon} />
       )}
@@ -55,8 +50,14 @@ const Call = (props) => {
         <p className={classes.phoneNumber}>{formatedPhoneNumber}</p>
       </Button>
       <p>{props.source}</p>
-      <CallRecognize />
-      <p>{props.call.date_notime} </p>
+      <p className={classes.gradeText}>Скрипт не использован</p>
+      {recordId && (
+        <AudioPlayer record={recordId} duration={formatedDuration} />
+      )}
+      {!recordId && formatedDuration != "00:00" && (
+        <p className={classes.callDuration}>{formatedDuration}</p>
+      )}
+      <div className={classes.underline}></div>
     </li>
   );
 };

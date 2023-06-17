@@ -29,3 +29,14 @@
 .callPhoto {
   border-radius: 50%;
 }
+
+.headingDuration {
+  margin-right: 40px;
+  text-align: end;
+}
+
+.underline {
+  width: 1400px;
+  border-bottom: solid 1px #eaf0fa;
+  margin-left: 40px;
+}

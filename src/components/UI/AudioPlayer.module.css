@@ -1,0 +1,21 @@
+.playerContainer {
+  width: 352px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  background: #eaf0fa;
+  border-radius: 48px;
+}
+
+.durationAudio {
+  margin-left: 18px;
+  margin-right: 12px;
+  font-weight: 400;
+  font-size: 15px;
+  color: #122945;
+  text-align: right;
+}
+
+.downloadButton:hover * {
+  fill: #002cfb;
+}

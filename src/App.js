@@ -20,7 +20,7 @@ function App() {
 
   const searchQuery = currentFilterValue ? `&in_out=${currentFilterValue}` : "";
 
-  const url = `https://api.skilla.ru/mango/getList?date_start=${dateInterval.dateStart}&date_end=${dateInterval.dateEnd}${searchQuery}&limit=700`;
+  const url = `https://api.skilla.ru/mango/getList?date_start=${dateInterval.dateStart}&date_end=${dateInterval.dateEnd}${searchQuery}&limit=400`;
 
   useEffect(() => {
     fetch(url, {
@@ -31,7 +31,9 @@ function App() {
       .then((data) => {
         setCallsData(data.results);
       })
-      .catch((error) => console.log("error.message"));
+      .catch((error) => {
+        console.log(error.message);
+      });
   }, [dateInterval, url]);
 
   const datePickerVisibleHandler = () => {
@@ -50,10 +52,15 @@ function App() {
     });
   };
 
+  const setCallsDataHandler = (value) => {
+    setCallsData(value);
+  };
+
   return (
     <div className="App">
       <SideBar />
       <MainContent
+        setCallsDataHandler={setCallsDataHandler}
         currentFilterValue={currentFilterValue}
         setCurrentFilterValueHandler={setCurrentFilterValueHandler}
         isDatePickerVisible={isDatePickerVisible}

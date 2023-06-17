@@ -21,11 +21,11 @@ const SideBar = () => {
       </NavLink>
       <SideBarNavList></SideBarNavList>
       <ButtonSidebar>
-        <span className={classes.buttonIcon}>Добавить заказ</span>{" "}
+        <span className={classes.buttonText}>Добавить заказ</span>{" "}
         <IconPlusSign />
       </ButtonSidebar>
       <ButtonSidebar>
-        <span className={classes.buttonIcon}>Оплата</span>{" "}
+        <span className={classes.buttonText}>Оплата</span>{" "}
         <IconExclamationSign />
       </ButtonSidebar>
     </nav>

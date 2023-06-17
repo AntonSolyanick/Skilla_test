@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { ReactComponent as IconArrowLeft } from "../../icons/iconsUI/arrowLeft.svg";
 import { ReactComponent as IconArrowRight } from "../../icons/iconsUI/arrowRight.svg";
 import { ReactComponent as IconCalendar } from "../../icons/iconsUI/calendar.svg";
+import { dateIntervalOptions } from "./dataIntervalOptions";
 import classes from "./DatePicker.module.css";
 import Button from "./Button";
 import Modal from "./Modal";
@@ -43,39 +44,9 @@ const DatePicker = ({
       dateView: "период",
     });
     datePickerVisibleHandler();
+    console.log(enteredDateEnd.current.value);
     daysCount = 2;
   };
-
-  const dateIntervalOptions = [
-    {
-      dateEnd: new Date().toISOString().split("T")[0],
-      dateStart: new Date(new Date().setDate(new Date().getDate() - 2))
-        .toISOString()
-        .split("T")[0],
-      dateView: "3 дня",
-    },
-    {
-      dateEnd: new Date().toISOString().split("T")[0],
-      dateStart: new Date(new Date().setDate(new Date().getDate() - 6))
-        .toISOString()
-        .split("T")[0],
-      dateView: "неделя",
-    },
-    {
-      dateEnd: new Date().toISOString().split("T")[0],
-      dateStart: new Date(new Date().setDate(new Date().getDate() - 30))
-        .toISOString()
-        .split("T")[0],
-      dateView: "месяц",
-    },
-    {
-      dateEnd: new Date().toISOString().split("T")[0],
-      dateStart: new Date(new Date().setDate(new Date().getDate() - 364))
-        .toISOString()
-        .split("T")[0],
-      dateView: "год",
-    },
-  ];
 
   return (
     <>

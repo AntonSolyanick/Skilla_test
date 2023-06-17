@@ -1,16 +1,18 @@
 .container {
   box-sizing: border-box;
+  position: relative;
   height: 65px;
   display: grid;
+  padding: 0;
   grid-template-columns: 34px 35px 100px 95px 28px 28px 332px 214px 198px 1fr;
   align-items: center;
-  border-bottom: 1px solid #eaf0fa;
 }
 
 .checkbox {
   width: 16px;
   height: 16px;
   margin-left: 12px;
+  border-bottom: none;
 }
 
 .callTypeIcon {
@@ -33,10 +35,6 @@
   z-index: -5;
 }
 
-.container:hover * {
-  z-index: 5;
-}
-
 .container:hover {
   cursor: pointer;
   background-color: rgba(212, 223, 243, 0.17);
@@ -46,4 +44,26 @@
   font-weight: 400;
   font-size: 15px;
   color: #122945;
+}
+
+.underline {
+  width: 1400px;
+  border-bottom: solid 1px #eaf0fa;
+  margin-left: 40px;
+  position: absolute;
+  bottom: 0;
+}
+
+.callDuration {
+  text-align: end;
+  margin-right: 40px;
+  color: #122945;
+  font-weight: 400;
+  font-size: 15px;
+}
+
+.gradeText {
+  font-weight: 400;
+  font-size: 14px;
+  color: #ea1a4f;
 }

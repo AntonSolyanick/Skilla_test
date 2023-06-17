@@ -2,6 +2,15 @@
   position: relative;
 }
 
+.currentValue:hover * {
+  fill: #002cfb;
+}
+
+.currentValue:hover {
+  color: #002cfb;
+  cursor: pointer;
+}
+
 .filterOtions {
   width: 204px;
   position: absolute;
@@ -23,6 +32,10 @@
 .currentValue {
   display: flex;
   position: sticky;
+}
+
+.currentValueFocus {
+  color: #122945;
 }
 
 .dropdownButton {

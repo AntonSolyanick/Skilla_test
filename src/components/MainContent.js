@@ -5,6 +5,7 @@ import DatePicker from "./UI/DatePicker";
 import CallsList from "./CallsList/CallsList";
 
 const MainContent = ({
+  setCallsDataHandler,
   currentFilterValue,
   setCurrentFilterValueHandler,
   isDatePickerVisible,
@@ -25,11 +26,19 @@ const MainContent = ({
           onChangeDateInterval={onChangeDateInterval}
         />
       </div>
+
       <CallsList
+        setCallsDataHandler={setCallsDataHandler}
         callsData={callsData}
         currentFilterValue={currentFilterValue}
         setCurrentFilterValueHandler={setCurrentFilterValueHandler}
       ></CallsList>
+      {callsData && callsData.length < 1 && (
+        <p className={classes.loading}>
+          Загрузка...
+          {console.log(callsData)}
+        </p>
+      )}
     </section>
   );
 };
