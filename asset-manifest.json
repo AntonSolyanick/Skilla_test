@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Skilla_test/static/css/main.61c4292f.css",
-    "main.js": "/Skilla_test/static/js/main.bc5d4805.js",
+    "main.js": "/Skilla_test/static/js/main.ee6c17e0.js",
     "static/js/787.51f52f12.chunk.js": "/Skilla_test/static/js/787.51f52f12.chunk.js",
     "static/media/SF-Pro-Display-Regular.otf": "/Skilla_test/static/media/SF-Pro-Display-Regular.d1f5e6e16dd4f75c3950.otf",
     "static/media/logo.svg": "/Skilla_test/static/media/logo.abd0677271bd6786f326cbdffcaef42c.svg",
@@ -32,11 +32,11 @@
     "static/media/downloadButton.svg": "/Skilla_test/static/media/downloadButton.d4f4d5ff09345cc524c89c75f20ad250.svg",
     "static/media/arrowLeft.svg": "/Skilla_test/static/media/arrowLeft.f850d09f95c068c3ac075947e271ffac.svg",
     "main.61c4292f.css.map": "/Skilla_test/static/css/main.61c4292f.css.map",
-    "main.bc5d4805.js.map": "/Skilla_test/static/js/main.bc5d4805.js.map",
+    "main.ee6c17e0.js.map": "/Skilla_test/static/js/main.ee6c17e0.js.map",
     "787.51f52f12.chunk.js.map": "/Skilla_test/static/js/787.51f52f12.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.61c4292f.css",
-    "static/js/main.bc5d4805.js"
+    "static/js/main.ee6c17e0.js"
   ]
 }
