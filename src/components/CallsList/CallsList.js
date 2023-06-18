@@ -29,10 +29,11 @@ const CallsList = (props) => {
             ></Call>
           ))}
       </ul>
-      {!props.callsData && (
+      {!props.callsData && <p className={classes.loading}>Загрузка...</p>}
+      {props.callsData && props.callsData.length < 1 && (
         <p className={classes.errorMessage}>
-          Диапазон дат введен не корректно, введите диапазон дат в формате:
-          гггг-мм-дд
+          За выбранный период звонки отсутствуют или диапазон дат введен
+          некорректно, введите диапазон дат в формате: гггг-мм-дд
         </p>
       )}
     </>

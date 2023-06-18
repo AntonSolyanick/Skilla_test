@@ -6,10 +6,12 @@ import { dateIntervalOptions } from "./dataIntervalOptions";
 import classes from "./DatePicker.module.css";
 import Button from "./Button";
 import Modal from "./Modal";
+import DatePickerForm from "./DatePickerForm";
 
 let daysCount = 2;
 
 const DatePicker = ({
+  setCallsDataHandler,
   isDatePickerVisible,
   datePickerVisibleHandler,
   dateInterval,
@@ -20,10 +22,19 @@ const DatePicker = ({
 
   const onChangeDaysCount = (term) => {
     let daysString = "дня";
-    if (daysCount + term >= 0 && daysCount + term < 6) {
+    if (daysCount + term >= 0) {
       daysCount += term;
-      daysCount + 1 < 2 && (daysString = "день");
-      daysCount + 1 > 4 && (daysString = "дней");
+      const daysArr = ["5", "6", "7", "8", "9", "0"];
+      const daysArr2 = ["11", "12", "13", "14"];
+      const lastNumber = String(daysCount + 1).slice(-1);
+
+      if (lastNumber === "1") daysString = "день";
+      if (
+        daysArr.includes(lastNumber) ||
+        daysArr2.includes(String(daysCount + 1))
+      )
+        daysString = "дней";
+
       onChangeDateInterval({
         dateEnd: new Date().toISOString().split("T")[0],
         dateStart: new Date(
@@ -44,7 +55,9 @@ const DatePicker = ({
       dateView: "период",
     });
     datePickerVisibleHandler();
-    console.log(enteredDateEnd.current.value);
+    setCallsDataHandler([]);
+    enteredDateEnd.current.value = "";
+    enteredDateStart.current.value = "";
     daysCount = 2;
   };
 
@@ -53,7 +66,12 @@ const DatePicker = ({
       {isDatePickerVisible && <Modal onClick={datePickerVisibleHandler} />}
       <div className={classes.wrapper}>
         <div className={classes.container}>
-          <Button onClick={() => onChangeDaysCount(-1)}>
+          <Button
+            onClick={() => {
+              onChangeDaysCount(-1);
+              setCallsDataHandler("");
+            }}
+          >
             <IconArrowLeft className={classes.arrow} />
           </Button>
           <Button onClick={datePickerVisibleHandler}>
@@ -62,7 +80,12 @@ const DatePicker = ({
               <p className={classes.calendarText}> {dateInterval.dateView} </p>
             </div>
           </Button>
-          <Button onClick={() => onChangeDaysCount(+1)}>
+          <Button
+            onClick={() => {
+              onChangeDaysCount(+1);
+              setCallsDataHandler("");
+            }}
+          >
             <IconArrowRight className={classes.arrow} />
           </Button>
         </div>
@@ -77,10 +100,9 @@ const DatePicker = ({
               className={classes.dateOptionValue}
               key={intervalOption.dateView}
               onClick={() => {
+                setCallsDataHandler("");
                 onChangeDateInterval({
-                  dateStart: intervalOption.dateStart,
-                  dateEnd: intervalOption.dateEnd,
-                  dateView: intervalOption.dateView,
+                  ...intervalOption,
                 });
                 daysCount = 2;
                 datePickerVisibleHandler();
@@ -92,29 +114,11 @@ const DatePicker = ({
 
           <li className={classes.liFormContainer}>
             <p className={classes.formText}>Указать даты</p>
-            <form
-              className={classes.formContainer}
-              onSubmit={onFormSubmitHandler}
-            >
-              <input
-                className={classes.dateInput}
-                type="text"
-                placeholder="__.__.__"
-                ref={enteredDateStart}
-              ></input>
-              <span>-</span>
-              <input
-                className={classes.dateInput}
-                type="text"
-                placeholder="__.__.__"
-                ref={enteredDateEnd}
-              ></input>
-              <Button>
-                <IconCalendar
-                  className={classes.calendarIconSubmitt}
-                ></IconCalendar>
-              </Button>
-            </form>
+            <DatePickerForm
+              onFormSubmitHandler={onFormSubmitHandler}
+              enteredDateStart={enteredDateStart}
+              enteredDateEnd={enteredDateEnd}
+            ></DatePickerForm>
           </li>
         </ul>
       </div>

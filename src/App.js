@@ -16,11 +16,11 @@ function App() {
   });
   const [currentFilterValue, setCurrentFilterValue] = useState("");
   const [isDatePickerVisible, setIsDatePickerVisible] = useState(false);
-  const [callsData, setCallsData] = useState([]);
+  const [callsData, setCallsData] = useState("");
 
   const searchQuery = currentFilterValue ? `&in_out=${currentFilterValue}` : "";
 
-  const url = `https://api.skilla.ru/mango/getList?date_start=${dateInterval.dateStart}&date_end=${dateInterval.dateEnd}${searchQuery}&limit=400`;
+  const url = `https://api.skilla.ru/mango/getList?date_start=${dateInterval.dateStart}&date_end=${dateInterval.dateEnd}${searchQuery}&limit=200`;
 
   useEffect(() => {
     fetch(url, {
@@ -29,7 +29,8 @@ function App() {
     })
       .then((response) => response.json())
       .then((data) => {
-        setCallsData(data.results);
+        if (!data.results) setCallsData([]);
+        else setCallsData(data.results);
       })
       .catch((error) => {
         console.log(error.message);

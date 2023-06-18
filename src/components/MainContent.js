@@ -20,6 +20,7 @@ const MainContent = ({
       <div className={classes.balanceAndCalendar}>
         <AccountBalance />
         <DatePicker
+          setCallsDataHandler={setCallsDataHandler}
           isDatePickerVisible={isDatePickerVisible}
           datePickerVisibleHandler={datePickerVisibleHandler}
           dateInterval={dateInterval}
@@ -33,12 +34,6 @@ const MainContent = ({
         currentFilterValue={currentFilterValue}
         setCurrentFilterValueHandler={setCurrentFilterValueHandler}
       ></CallsList>
-      {callsData && callsData.length < 1 && (
-        <p className={classes.loading}>
-          Загрузка...
-          {console.log(callsData)}
-        </p>
-      )}
     </section>
   );
 };

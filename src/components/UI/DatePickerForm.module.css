@@ -1,0 +1,18 @@
+.formContainer {
+  display: flex;
+  position: relative;
+  top: -5px;
+}
+.dateInput {
+  width: 53px;
+  font-weight: 400;
+  outline: none;
+  padding-bottom: 10px;
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  border: none;
+}
+
+.calendarIconSubmitt {
+  margin-left: 15px;
+}

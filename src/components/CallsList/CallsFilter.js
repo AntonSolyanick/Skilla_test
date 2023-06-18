@@ -46,7 +46,7 @@ const CallsFilter = (props) => {
               className={classes.filterValue}
               onClick={() => {
                 onChangeFilterhandler(value);
-                props.setCallsDataHandler([]);
+                props.setCallsDataHandler("");
                 if (value === "Входящие")
                   props.setCurrentFilterValueHandler("1");
                 if (value === "Исходящие")

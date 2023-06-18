@@ -27,7 +27,7 @@
 }
 
 .calendarText {
-  width: 42px;
+  width: 51px;
   margin-left: 8px;
   font-size: 14px;
   font-weight: 400;
@@ -73,26 +73,6 @@
 
 .arrow:hover * {
   fill: #002cfb;
-}
-
-.dateInput {
-  width: 53px;
-  font-weight: 400;
-  outline: none;
-  padding-bottom: 10px;
-  font-size: 14px;
-  letter-spacing: 0.12em;
-  border: none;
-}
-
-.formContainer {
-  display: flex;
-  position: relative;
-  top: -5px;
-}
-
-.calendarIconSubmitt {
-  margin-left: 15px;
 }
 
 .formText {

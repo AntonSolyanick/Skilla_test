@@ -1,7 +1,7 @@
 import classes from "./CallsFiltersList.module.css";
 import Button from "../UI/Button";
 import CallsFilter from "./CallsFilter";
-import { filters } from "./DataFilters";
+import { filters } from "./dataFilters";
 import { ReactComponent as IconSearch } from "../../icons/iconsUI/search.svg";
 
 const CallsFiltersList = ({
