@@ -20,7 +20,7 @@ function App() {
 
   const searchQuery = currentFilterValue ? `&in_out=${currentFilterValue}` : "";
 
-  const url = `https://api.skilla.ru/mango/getList?date_start=${dateInterval.dateStart}&date_end=${dateInterval.dateEnd}${searchQuery}&limit=200`;
+  const url = `https://api.skilla.ru/mango/getList?date_start=${dateInterval.dateStart}&date_end=${dateInterval.dateEnd}${searchQuery}&limit=100`;
 
   useEffect(() => {
     fetch(url, {
