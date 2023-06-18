@@ -68,6 +68,7 @@ const DatePicker = ({
         <div className={classes.container}>
           <Button
             onClick={() => {
+              if (daysCount === 0) return;
               onChangeDaysCount(-1);
               setCallsDataHandler("");
             }}
