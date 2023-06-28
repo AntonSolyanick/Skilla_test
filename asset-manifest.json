@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/Skilla_test/static/css/main.61c4292f.css",
+    "main.css": "/Skilla_test/static/css/main.2f2ba0db.css",
     "main.js": "/Skilla_test/static/js/main.ee6c17e0.js",
     "static/js/787.51f52f12.chunk.js": "/Skilla_test/static/js/787.51f52f12.chunk.js",
     "static/media/SF-Pro-Display-Regular.otf": "/Skilla_test/static/media/SF-Pro-Display-Regular.d1f5e6e16dd4f75c3950.otf",
@@ -31,12 +31,12 @@
     "static/media/arrowRight.svg": "/Skilla_test/static/media/arrowRight.e4d833d4f9d15be98155f48511efad64.svg",
     "static/media/downloadButton.svg": "/Skilla_test/static/media/downloadButton.d4f4d5ff09345cc524c89c75f20ad250.svg",
     "static/media/arrowLeft.svg": "/Skilla_test/static/media/arrowLeft.f850d09f95c068c3ac075947e271ffac.svg",
-    "main.61c4292f.css.map": "/Skilla_test/static/css/main.61c4292f.css.map",
+    "main.2f2ba0db.css.map": "/Skilla_test/static/css/main.2f2ba0db.css.map",
     "main.ee6c17e0.js.map": "/Skilla_test/static/js/main.ee6c17e0.js.map",
     "787.51f52f12.chunk.js.map": "/Skilla_test/static/js/787.51f52f12.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.61c4292f.css",
+    "static/css/main.2f2ba0db.css",
     "static/js/main.ee6c17e0.js"
   ]
 }
